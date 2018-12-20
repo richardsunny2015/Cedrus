@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-
+import {connect} from 'react-redux'
+import {calculateValue} from '../store'
 
 const calculations = ['add', 'subtract', 'divide', 'multiply']
 const symbols = ['+', '-', '/', '*']
 
-export default class CalculateForm extends Component {
+class CalculateForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -15,13 +16,15 @@ export default class CalculateForm extends Component {
   }
   changeNumberHandler = firstOrSecond => evt => {
     // Return a function that would change state based on firstOrSecond
-    this.setState({[firstOrSecond]: evt.target.value})
+    this.setState({[firstOrSecond]: Number(evt.target.value)})
   }
-  clickHandler = evt => {
-    this.setState({calculation: evt.target.value})
-  }
+//   clickHandler = evt => {
+//     this.setState({calculation: evt.target.value})
+//   }
 
   render() {
+    const {firstNum, secondNum} = this.state
+    const clickHandler = this.props.clickHandler([firstNum, secondNum])
     return (
       <div>
         <label htmlFor="firstNum">
@@ -48,7 +51,7 @@ export default class CalculateForm extends Component {
             key={symbols[idx]}
             type="button"
             value={elem}
-            onClick={this.clickHandler}
+            onClick={clickHandler}
           >
             {symbols[idx]}
           </button>
@@ -57,3 +60,11 @@ export default class CalculateForm extends Component {
     )
   }
 }
+
+const mapDispatch = dispatch => ({
+    clickHandler: numbers => evt => {
+        dispatch(calculateValue(evt.target.value, numbers))
+    }
+})
+
+export default connect(null, mapDispatch)(CalculateForm)
