@@ -9,7 +9,6 @@ class CalculateForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      calculation: '',
       firstNum: 0,
       secondNum: 0
     } //
@@ -24,6 +23,7 @@ class CalculateForm extends Component {
 
   render() {
     const {firstNum, secondNum} = this.state
+    // create evt handler based on firstNum and secondNum
     const clickHandler = this.props.clickHandler([firstNum, secondNum])
     return (
       <div>
@@ -34,7 +34,7 @@ class CalculateForm extends Component {
           name="firstNum"
           type="number"
           value={this.state.firstNum}
-          onChange={this.changeNumberHandler('firstNum')}
+          onChange={this.changeNumberHandler('firstNum')} // create evt handler based on firstNum and secondNum
         />
         <label htmlFor="secondNum">
           <small>Second Number: </small>
@@ -46,6 +46,7 @@ class CalculateForm extends Component {
           onChange={this.changeNumberHandler('secondNum')}
         />
         <br />
+        {/*Map over operations to create buttons*/}
         {calculations.map((elem, idx) => (
           <button
             key={symbols[idx]}
