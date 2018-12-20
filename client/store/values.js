@@ -16,8 +16,8 @@ const addValue = value => ({type: ADD_VALUE, value})
 
 export const calculateValue = (calculation, numbers) => async dispatch => {
   try {
-    const res = await axios.post('/arithmetic', {calculation, numbers})
-    dispatch(addValue(res.data))
+    const res = await axios.post('/arithmetic', {calculation, numbers}) // talk to server to calculate numbers
+    dispatch(addValue(res.data)) // dispatch action to store
   } catch (err) {
     console.error(err)
   }
