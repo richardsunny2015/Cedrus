@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-
+import {connect} from 'react-redux'
+import {calculateValue} from '../store'
 
 const calculations = ['add', 'subtract', 'divide', 'multiply']
 const symbols = ['+', '-', '/', '*']
 
-export default class CalculateForm extends Component {
+class CalculateForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -57,3 +58,11 @@ export default class CalculateForm extends Component {
     )
   }
 }
+
+const mapDispatch = dispatch => ({
+    clickHandler: numbers => evt => {
+        dispatch(calculateValue(evt.target.value, numbers))
+    }
+})
+
+export default connect(null, mapDispatch)(CalculateForm)
