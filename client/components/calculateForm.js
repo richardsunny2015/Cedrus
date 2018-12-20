@@ -18,11 +18,13 @@ class CalculateForm extends Component {
     // Return a function that would change state based on firstOrSecond
     this.setState({[firstOrSecond]: evt.target.value})
   }
-  clickHandler = evt => {
-    this.setState({calculation: evt.target.value})
-  }
+//   clickHandler = evt => {
+//     this.setState({calculation: evt.target.value})
+//   }
 
   render() {
+    const {firstNum, secondNum} = this.state
+    const clickHandler = this.props.clickHandler([firstNum, secondNum])
     return (
       <div>
         <label htmlFor="firstNum">
@@ -49,7 +51,7 @@ class CalculateForm extends Component {
             key={symbols[idx]}
             type="button"
             value={elem}
-            onClick={this.clickHandler}
+            onClick={clickHandler}
           >
             {symbols[idx]}
           </button>
