@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 
+
 const calculations = ['add', 'subtract', 'divide', 'multiply']
 const symbols = ['+', '-', '/', '*']
 
@@ -14,9 +15,12 @@ export default class CalculateForm extends Component {
   }
   changeNumberHandler = firstOrSecond => evt => {
     // Return a function that would change state based on firstOrSecond
-    console.log(evt.target.value)
     this.setState({[firstOrSecond]: evt.target.value})
   }
+  clickHandler = evt => {
+    this.setState({calculation: evt.target.value})
+  }
+
   render() {
     return (
       <div>
@@ -40,7 +44,12 @@ export default class CalculateForm extends Component {
         />
         <br />
         {calculations.map((elem, idx) => (
-          <button key={symbols[idx]} type="button" value={elem}>
+          <button
+            key={symbols[idx]}
+            type="button"
+            value={elem}
+            onClick={this.clickHandler}
+          >
             {symbols[idx]}
           </button>
         ))}
