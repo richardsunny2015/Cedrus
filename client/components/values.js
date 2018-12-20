@@ -6,7 +6,7 @@ const Values = props => {
     <div>
       {props.values.map((elem, idx) => (
 
-          <p key={elem}>Value {idx}: {elem}</p>
+          <p key={idx + 1}>Value {idx}: {elem}</p>
 
       ))}
     </div>
