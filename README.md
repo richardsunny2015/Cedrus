@@ -31,3 +31,5 @@ As of right now these are the features implemented:
 
 * Basic arithmetic on two numbers
 * Display previously calculated values
+
+## Made with Fullstack Academy's Boilerplate
