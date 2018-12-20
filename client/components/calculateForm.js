@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 const calculations = ['add', 'subtract', 'divide', 'multiply']
+const symbols = ['+', '-', '/', '*']
 
 export default class CalculateForm extends Component {
   constructor(props) {
@@ -37,7 +38,12 @@ export default class CalculateForm extends Component {
           value={this.state.secondNum}
           onChange={this.changeNumberHandler('secondNum')}
         />
-
+        <br />
+        {calculations.map((elem, idx) => (
+          <button key={symbols[idx]} type="button" value={elem}>
+            {symbols[idx]}
+          </button>
+        ))}
       </div>
     )
   }
