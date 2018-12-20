@@ -16,7 +16,7 @@ class CalculateForm extends Component {
   }
   changeNumberHandler = firstOrSecond => evt => {
     // Return a function that would change state based on firstOrSecond
-    this.setState({[firstOrSecond]: evt.target.value})
+    this.setState({[firstOrSecond]: Number(evt.target.value)})
   }
 //   clickHandler = evt => {
 //     this.setState({calculation: evt.target.value})
